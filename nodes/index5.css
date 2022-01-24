@@ -1,0 +1,20 @@
+#resultArea{
+    width:80%;
+    height:7em;
+}
+span{
+    display:block;
+}
+.bmw, .mercedes{
+    padding-top: 191px;
+    padding-bottom: 191px;
+    border: 5px dashed orange;
+    margin: 50px;
+}
+.mercedes{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.x5{
+    padding-top:0px;
+}

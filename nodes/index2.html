@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <!-- BEGIN CSS-->
+    <style>
+        h1{
+            color:blue;
+        }
+        /* iedere ID is UNIEK op een pagina. */
+        #myCustomColor{
+            color:red;
+        }
+        #resultaat{
+            background: blue;
+            color:white;
+        }
+
+    </style>
+</head>
+<body>
+<h1 id="myCustomColor">
+    My First page part A
+</h1>
+<p id="resultaat"></p>
+
+<!--BEGIN JAVASCRIPT-->
+<script>
+document.getElementById("resultaat").innerHTML = document.getElementById("myCustomColor").firstChild.nodeValue;
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        h1{
+            color:red;
+        }
+        h1 span{
+            color:blue;
+        }
+        #source span{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Java<span>script</span></h1>
+    <h2>Source:</h2>
+    <h3>INNERHTML, INNERTEXT EN TEXTCONTENT</h3>
+    <p id="source">
+        <span>HIDDEN TEXT</span>  <!--display:none;-->
+    </p>
+    <h4>Resultaat van INNERHTML:</h4>
+    <p>Neemt alles mee binnen de div, nl. tags EN values</p>
+    <textarea id="innerhtml" cols="80" rows="10" readonly></textarea>
+
+    <h4>Resultaat van TEXTCONTENT:</h4>
+    <p>Neemt enkel de values</p>
+    <textarea id="textContentOutput" cols="80" rows="10" readonly></textarea>
+
+    <h4>Resultaat van INNERTEXT:</h4>
+    <p>Innertext doet hetzelfde als textContent maar MET CSS</p>
+    <textarea id="innerTextOutput" cols="80" rows="10" readonly></textarea>
+    <script>
+        var source = document.getElementById("source");
+        var innerHtmlOutput = document.getElementById("innerhtml");
+        var textContentOutput = document.getElementById("textContentOutput");
+        var innerTextOutput = document.getElementById("innerTextOutput");
+
+        innerHtmlOutput.value = source.innerHTML;
+        textContentOutput.value = source.textContent;
+        innerTextOutput.value = source.innerText;
+    </script>
+</body>
+</html>

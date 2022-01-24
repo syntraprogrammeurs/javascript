@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #div1{
+            color:rgba(0,0,0,0.5);
+            font-size: 45px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1">De tekst hierboven werd dynamisch toegevoegd.</div>
+    <div>test</div>
+
+
+<script>
+document.body.onload = addElement;
+
+function addElement(){
+    //een nieuwe div maken met de property createElement
+    var newDiv = document.createElement("div");
+    //toevoegen van nieuwe tekst aan newDiv
+    var newContent = document.createTextNode("Hallo, Full Stack Developers!");
+    //voeg de nieuwe tekst nu toe aan newDiv
+    newDiv.appendChild(newContent);
+    //voeg de div toe VOOR de bestaande DIV1
+    var currentDiv = document.getElementById("div1");
+    document.body.insertBefore(newDiv,currentDiv);
+}
+</script>
+</body>
+</html>
