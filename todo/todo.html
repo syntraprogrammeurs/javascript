@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            width: 620px;
+            margin: 0 auto;
+        }
+
+        #tasks{
+            background: grey;
+            box-shadow: 5px 5px 15px 5px #000000;
+        }
+        #myInput{
+            font-size: 39px;
+            font-weight: 900;
+            background: red;
+            color: white;
+        }
+        .addBtn{
+            padding: 6px;
+            color: red;
+            background: purple;
+        }
+        li{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="tasks">
+    <h1>My To Do List</h1>
+    <input type="text" id="myInput" placeholder="Task...">
+    <span onclick="taakToevoegen()" class="addBtn">Add</span>
+</div>
+
+<ul id="resultaat">
+
+</ul>
+
+<script>
+
+    function taakToevoegen() {
+        var li= document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("U dient iets te schrijven!");
+        } else {
+            document.getElementById("resultaat").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+    }
+</script>
+
+</body>
+</html>
