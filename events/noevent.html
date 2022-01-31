@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geen event</title>
+</head>
+<body>
+    <h1>No event</h1>
+    <form action="">
+        <label for="">Naam:</label>
+        <input type="text" id="textNaam" placeholder="Vul uw naam in">
+        <button type="button" id="btnSubmit">Verstuur</button>
+    </form>
+    <p id="resultaat">resultaat</p>
+
+    <script>
+        window.onload = function(){
+            document.getElementById("btnSubmit").addEventListener('click',function(){
+                let naam = document.getElementById("textNaam").value;
+                document.getElementById("resultaat").innerHTML = naam;
+               resultaat.innerHTML = '<h2>Welkom ' + naam + '</h2>';
+               // resultaat.innerHTML = `<h2>Welkom ${naam} </h2>`
+            },false);
+        }
+
+    </script>
+</body>
+</html>

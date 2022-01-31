@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prevent Default</title>
+</head>
+<body>
+<h1>Prevent Default</h1>
+<p>Uitschakelen van de standaard gedraging van een html input element. (tag met
+    event mogelijkheid)</p>
+
+<form action="">
+    <label for="id-checkbox">Checkbox:</label>
+    <input type="checkbox" id="id-checkbox">
+</form>
+<p id="resultaat"></p>
+
+
+<script>
+
+    //queryselector kan zowel id's of classes inlezen.
+    document.querySelector("#id-checkbox").addEventListener('click',function(event){
+        document.querySelector("#resultaat").innerHTML +=
+            "Sorry! <code>preventDefault()</code> verbiedt u dit aan te vinken";
+        event.preventDefault();
+    })
+
+</script>
+</body>
+</html>

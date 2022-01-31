@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Onclick event</title>
+</head>
+<body>
+<h1>Events en formulieren</h1>
+<form action="">
+    <label for="">Naam:</label>
+    <input id="textNaam" type="text">
+    <button type="button" onclick="getInputValue()">Verstuur</button>
+</form>
+
+<p id="resultaat">
+
+</p>
+
+<script>
+    function getInputValue(){
+        let naam = document.getElementById("textNaam").value;
+        document.getElementById("resultaat").innerHTML = naam;
+    }
+</script>
+</body>
+</html>
