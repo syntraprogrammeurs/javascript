@@ -2,63 +2,75 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-        body{
-            width: 620px;
-            margin: 0 auto;
-        }
-
-        #tasks{
-            background: grey;
-            box-shadow: 5px 5px 15px 5px #000000;
-        }
-        #myInput{
-            font-size: 39px;
-            font-weight: 900;
-            background: red;
-            color: white;
-        }
-        .addBtn{
-            padding: 6px;
-            color: red;
-            background: purple;
-        }
-        li{
-            color:blue;
-        }
-    </style>
+    <title>Todo App</title>
 </head>
 <body>
+<form id="new_task_form">
+    <input id="new_task" type="text" placeholder="Create New Task...">
+    <button id="new_task_button" type="submit">+</button>
+</form>
+<hr>
+<section id="taskList">
 
-<div id="tasks">
-    <h1>My To Do List</h1>
-    <input type="text" id="myInput" placeholder="Task...">
-    <span onclick="taakToevoegen()" class="addBtn">Add</span>
-</div>
-
-<ul id="resultaat">
-
-</ul>
-
+</section>
 <script>
+    /** Toevoegen van een event listener op de form tag **/
+    var taskform = document.getElementById("new_task_form");
+    taskform.setAttribute("style","background:red;");
+    var taskList = document.getElementById("taskList");
+    taskform.addEventListener("submit",function(e){
+        e.preventDefault();//standaard gedraging van de submit button uitschakelen.
+        //var newTaskInputValue = document.getElementById("new_task").value;
+        var newTaskInputValue = taskform.elements.new_task;
+        addTask(newTaskInputValue.value);
+        //reset van de Inputvalue
+        newTaskInputValue.value = "";
+    });
+    function addTask(newTaskInputValue){
+        /*<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+            <label htmlFor="vehicle1"> I have a bike</label><br>
 
-    function taakToevoegen() {
-        var li= document.createElement("li");
-        var inputValue = document.getElementById("myInput").value;
-        var t = document.createTextNode(inputValue);
-        li.appendChild(t);
-        if (inputValue === '') {
-            alert("U dient iets te schrijven!");
-        } else {
-            document.getElementById("resultaat").appendChild(li);
-        }
-        document.getElementById("myInput").value = "";
+            <div>
+                <button>Trash</button>
+                <input type="checkbox">
+                <label>Taak 1</label>
+            </div>
 
+            */
+        /** opbouw van de tags **/
+        const div = document.createElement("div");
+        const trash = document.createElement("button");
+        const checkbox = document.createElement("input");
+        checkbox.type="checkbox";
+        const label = document.createElement("label");
+
+        /** Toevoegen van de waarden van de button en de ingevulde taak door de gebruiker**/
+        trash.innerHTML = "DEL";
+        label.innerText = newTaskInputValue;
+
+        /**injectie volgorde HTML elementen**/
+        div.appendChild(trash);
+        div.appendChild(checkbox);
+        div.appendChild(label);
+
+        /** injectie van de volledig div in de tasklists **/
+        taskList.appendChild(div);
+
+        /** addEventListener aan het checkbox element verbinden met het click event **/
+        checkbox.addEventListener("click", function(){
+           if(checkbox.checked == true){
+               div.style.textDecoration = "line-through";
+           } else{
+               div.style.textDecoration = "none";
+           }
+        });
+
+        /** addEventListener aan het trash element verbinden met een click event. **/
+        trash.addEventListener("click", function(){
+           div.remove();
+        });
     }
+
 </script>
 
 </body>
