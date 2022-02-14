@@ -23,21 +23,31 @@
 </head>
 <body>
 <div class="d-flex justify-content-center align-items-center vh-100">
-    <button id="btnPlus" onclick="eventPlus()">+</button>
+    <button class="btn" onclick="eventPlus()">+</button>
     <label id="label">0</label>
-    <button id="btnMin" onclick="eventMin()">-</button>
+    <button class="btn" onclick="eventMin()">-</button>
 </div>
-
 <script>
     var body = document.body;
     var label = document.getElementById("label");
     var teller = 0;
 
+    document.addEventListener('keyup', function(event) {
+        if (event.key === "ArrowUp") {
+            event.preventDefault();
+            eventPlus();
+        }else if(event.key === "ArrowDown"){
+            event.preventDefault();
+            eventMin();
+        }
+    }, false);
+
     function eventPlus(){
         label.innerHTML = teller++;
         oddOrEven(teller);
+        console.log()
     }
-    function eventMin(){
+    function eventMin(e){
         label.innerHTML = teller--;
         oddOrEven(teller);
     }
