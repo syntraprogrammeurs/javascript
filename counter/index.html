@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Counter</title>
+    <style>
+        .d-flex{
+            display:flex;
+        }
+        .justify-content-center{
+            justify-content: center;
+        }
+        .align-items-center{
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+    <button id="btnPlus" onclick="eventPlus()">+</button>
+    <label id="label">0</label>
+    <button id="btnMin" onclick="eventMin()">-</button>
+</div>
+
+<script>
+    var body = document.body;
+    var label = document.getElementById("label");
+    var teller = 0;
+
+    function eventPlus(){
+        label.innerHTML = teller++;
+        oddOrEven(teller);
+    }
+    function eventMin(){
+        label.innerHTML = teller--;
+        oddOrEven(teller);
+    }
+    function oddOrEven(teller){
+        if(teller%2==0){
+            body.setAttribute("style", "background:green;");
+        } else{
+            body.setAttribute("style", "background:blue;");
+        }
+    }
+</script>
+</body>
+</html>
