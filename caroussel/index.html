@@ -5,29 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Image Slider</title>
+
+    <style>
+        .container{
+            width:100%;
+            margin:auto;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            position:relative;
+        }
+        .image{
+            display:none;
+        }
+        #prev{
+            position:absolute;
+            top:43%;
+            left:0;
+            cursor:pointer;
+            padding:16px;
+            color:white;
+            font-weight:bold;
+            font-size:1rem;
+            border-radius:0 3px 3px 0;
+            user-select:none;
+            transition: 0.6s ease;
+        }
+        #next{
+            position:absolute;
+            top:43%;
+            right:0;
+            cursor:pointer;
+            padding:16px;
+            color:white;
+            font-weight:bold;
+            font-size:1rem;
+            border-radius:0 3px 3px 0;
+            user-select:none;
+            transition: 0.6s ease;
+        }
+        #prev:hover, #next:hover{
+            background: rgba(0,0,0,0.5);
+        }
+        .dot{
+            display:inline-block;
+            height:15px;
+            width:15px;
+            margin: 0 2px;
+            background-color:#bbb;
+            border-radius:50%;
+            transition: background-color 0.6s ease;
+        }
+        .dots{
+            text-align:center;
+            margin-top:2%;
+        }
+
+        .active{
+            background-color: #717171;
+        }
+        /* animatie tussen images voorzien */
+        .fade{
+            animation-name:fade;
+            animation-duration:1.5s;
+        }
+
+        @keyframes fade{
+            from{
+                opacity: .4;
+            }
+            to{
+                opacity:1;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
     <div class="image fade">
-        <img src="..." width="100%">
+        <img src="image1.jpg" width="100%">
     </div>
     <div class="image fade">
-        <img src="..." width="100%">
+        <img src="image2.jpg" width="100%">
     </div>
     <div class="image fade">
-        <img src="..." width="100%">
+        <img src="image3.jpg" width="100%">
     </div>
     <div class="image fade">
-        <img src="..." width="100%">
+        <img src="image3.jpeg" width="100%">
     </div>
     <div class="image fade">
-        <img src="..." width="100%">
+        <img src="image4.jpg" width="100%">
     </div>
 
 
-    <a id="prev">&#10094;</a>
-    <a id="next">&#10095;</a>
+    <a id="prev" onclick="show_slide(-1)">&#10094;</a>
+    <a id="next" onclick="show_slide(1)">&#10095;</a>
 
     <div class="dots">
         <span class="dot"></span>
@@ -38,6 +114,36 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+    var index=0;
+
+    function show_slide(i){
+        //ophalen van de aangeklikte foto
+        index +=i;
+        // alle image tags inladen
+        var images = document.getElementsByClassName("image");
+        // dots inladen
+        var dots = document.getElementsByClassName("dot");
+        //for loop verwijderd active class met leeg.
+        for(i=0; i< dots.length;i++){
+            dots[i].className = dots[i].className.replace(" active", "");
+            images[i].style.display="none";
+        }
+        //wanneer de index groter is dan het aantal images zet dan de index terug op 0
+        if(index > images.length-1){
+            index = 0;
+        }
+        //wanneer de index kleiner is dan 0 zet ze dan gelijk met de lengte van de images (aantal)
+        if(index < 0){
+            index = images.length -1;
+        }
+        //Toon enkel de vorige volgende image
+        images[index].style.display = "block";
+        //actief maken van de huidige dot.
+        dots[index].className += " active";
+    }
+    window.addEventListener("onload", show_slide(index));
+
+</script>
 </body>
 </html>
