@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EXTERN JSON BESTAND INLEZEN (API)</title>
+</head>
+<body>
+<div id="overzicht">
+
+</div>
+<script>
+    function jsonLink(){
+        const xhr = new XMLHttpRequest();
+        xhr.onload = onLoad;
+        xhr.open("GET","https://swapi.dev/api/people", true);
+        xhr.send(null); //null verwijst bij de req
+        // uest (vraag),
+        //omdat de status van de server en ook het json bestand
+        //op dit ogenblik nog NIET gekend zijn.
+
+    }
+    function onLoad(){
+        const overzicht = document.getElementById("overzicht");
+        let ul = document.createElement("ul");
+        let naam = JSON.parse(this.responseText);
+
+        for(i=0;i < naam["count"];i++){
+            let li = document.createElement("li");
+
+            if(naam.name !== ""){
+
+                console.log(naam['results'][i]['name']);
+                li.innerHTML=naam['results'][i]['name'];
+            }
+            ul.appendChild(li);
+        }
+        overzicht.appendChild(ul);
+    }
+    window.addEventListener("load", jsonLink);
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TXT BESTAND INLADEN</title>
+</head>
+<body>
+<p id="demo">AJAX zal hier de tekst wijzigen.</p>
+<button type="button" onclick="loadDoc()">Wijzig content</button>
+
+<script>
+    function loadDoc(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET","test.txt", false);
+        xhttp.send();
+        document.getElementById("demo").innerHTML =
+            xhttp.responseText;
+    }
+</script>
+</body>
+</html>

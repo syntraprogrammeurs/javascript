@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XML DOCUMENT INLEZEN</title>
+</head>
+<body>
+    <h1>XMLHTTPREQUEST OBJECT (XML BESTAND)</h1>
+    <p id="demo">AJAX zal hier de tekst wijzigen.</p>
+    <button type="button" onclick="loadDoc()">Wijzig content</button>
+    <script>
+        function loadDoc(){
+            var xhttp, xmlDoc, txt, x, i;
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+
+                if(this.readyState == 4 && this.status == 200){
+
+                  /*  xmlDoc = this.responseXML;
+                    txt = "";
+                    x = xmlDoc.getElementsByTagName("title");
+                    for(i=0; i< x.length;i++){
+                       txt = txt + x[i].childNodes[0].nodeValue + "<br>";
+                    }*/
+                   // document.getElementById("demo").innerHTML = txt;
+                    document.getElementById("demo").innerHTML = this.getAllResponseHeaders();
+                }
+            }
+            xhttp.open("GET","books.xml",true);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
