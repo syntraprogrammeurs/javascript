@@ -19,14 +19,14 @@
 
                 if(this.readyState == 4 && this.status == 200){
 
-                  /*  xmlDoc = this.responseXML;
+                    xmlDoc = this.responseXML;
                     txt = "";
                     x = xmlDoc.getElementsByTagName("title");
                     for(i=0; i< x.length;i++){
                        txt = txt + x[i].childNodes[0].nodeValue + "<br>";
-                    }*/
-                   // document.getElementById("demo").innerHTML = txt;
-                    document.getElementById("demo").innerHTML = this.getAllResponseHeaders();
+                    }
+                   document.getElementById("demo").innerHTML = txt;
+                   // document.getElementById("demo").innerHTML = this.getAllResponseHeaders();
                 }
             }
             xhttp.open("GET","books.xml",true);

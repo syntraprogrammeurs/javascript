@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Objecten</title>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+    //object = class
+    //constructor
+  /*  var Persoon = function(naam, geboortedatum, geslacht)
+    {
+        this.naam = naam;
+        this.geboortedatum = geboortedatum;
+        this.geslacht = geslacht;
+    }*/
+    var Persoon = function(naam, geboortedatum, geslacht, haarkleur)
+    {
+        this.naam = naam;
+        this.geboortedatum = geboortedatum;
+        this.geslacht = geslacht;
+        this.haarkleur = haarkleur;
+    }
+    Persoon.prototype.berekenLeeftijd = function(){
+        var today = new Date();
+        var year = today.getFullYear();
+        console.log(year-this.geboortedatum);
+    }
+
+    console.log(typeof Persoon);
+    //*code*/
+    var persoonA = new Persoon("Tom",1973,"m", "rood"); //instantieren van een object
+    var persoonB =new Persoon("Tim",1980,"m");//instantieren van een object
+
+    console.log(persoonA.berekenLeeftijd());
+    console.log(persoonB.berekenLeeftijd());
+
+
+    document.getElementById("demo").innerHTML = persoonA.naam + ' ' + persoonA.haarkleur + ' ' + persoonB.naam;
+
+   /* var persoonA = new Object();
+    persoonA.naam = "Tom";
+    persoonA.geboorteDatum = 1973;
+    persoonA.geslacht = "m";
+
+    var persoonB = new Object();
+    persoonB.naam = "Tim";
+    persoonB.geboorteDatum = 1980;
+    persoonB.geslacht = "m";*/
+
+
+
+</script>
+</body>
+</html>
