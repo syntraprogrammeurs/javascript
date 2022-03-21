@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Rekenlijst</title>
 </head>
 <body>
+<!--In de eerste div staan alle dropdownlijsten.  Hier vragen we
+het typeberekening, aantaldigits en aantalberekeningen op.-->
 <div>
     <p>Soort oefeningen:</p>
     <select id="typeBerekening">
@@ -18,7 +20,7 @@
         <option value="5">Mix, 2 operands</option>
     </select>
     <p>Aantal digits:</p>
-    <select name="" id="aantalDigits">
+    <select id="aantalDigits" name="">
         <option value="1">1 digit</option>
         <option value="2">2 digits</option>
         <option value="3">3 digits</option>
@@ -27,14 +29,14 @@
         <option value="6">6 digits</option>
     </select>
     <p>Aantal oefeningen:</p>
-    <select name="" id="aantalBerekeningen">
+    <select id="aantalBerekeningen" name="">
         <option value="5">5 oefeningen</option>
         <option value="10">10 oefeningen</option>
         <option value="15">15 oefeningen</option>
         <option value="20">20 oefeningen</option>
     </select>
-    <input type="button" value="Genereer oefeningen" onclick="generateOefeningen();">
-    <input type="button" value="Print Pagina" onclick="window.print();">
+    <input onclick="generateOefeningen();" type="button" value="Genereer oefeningen">
+    <input onclick="window.print();" type="button" value="Print Pagina">
 </div>
 
 <div id="title">
@@ -44,51 +46,81 @@
 
 
 <script>
-    function getDropDownListValue(name){
+    /* Deze functie zorgt ervoor dat we de value uit de geselecteerde option
+     per select (dropdownlijst) ophalen.*/
+    function getDropDownListValue(name) {
         var list = document.getElementById(name);
         return list.options[list.selectedIndex].value;
     }
-    function generateOefeningen(){
+
+    /*deze functie genereert de oefeningen en injecteert deze in de div van worksheet*/
+    function generateOefeningen() {
+        //ophalen van de aangeklikte values per dropdownlijst
         var typeBerekening = getDropDownListValue("typeBerekening");
         var aantalBerekeningen = getDropDownListValue("aantalBerekeningen");
         var aantalDigits = getDropDownListValue("aantalDigits");
 
         var operand1, operand2, operator, operators;
 
-        switch(typeBerekening){
+        var resultaat = "";
+        //keuze van berekening
+        switch (typeBerekening) {
             case '1':
-                operators=['+'];
+                operators = ['+'];
                 document.getElementById('title').innerHTML = 'Optellingen';
+                allesBehalveDeling();
                 break;
             case '2':
-                operators=['-'];
+                operators = ['-'];
                 document.getElementById('title').innerHTML = 'Aftrekking';
+                allesBehalveDeling();
                 break;
             case '3':
-                operators=['*'];
+                operators = ['*'];
                 document.getElementById('title').innerHTML = 'Vermenigvuldiging';
+                allesBehalveDeling();
                 break;
             case '4':
-                operators=['/'];
+                operators = ['/'];
                 document.getElementById('title').innerHTML = 'Deling';
+                allesMetDeling()
                 break;
             case '5':
-                operators=['+','-','*','/'];
+                operators = ['+', '-', '*', '/'];
                 document.getElementById('title').innerHTML = 'Mix';
+                allesMetDeling()
                 break;
         }
         document.getElementById("worksheet").innerHTML = "";
 
         /**genereren van de oefeningen**/
+        function allesBehalveDeling() {
+            for (i = 1; i <= parseInt(aantalBerekeningen); i++) {
+                operand1 = Math.floor((Math.random() * (Math.pow(10, aantalDigits) + 1)));
+                operand2 = Math.floor((Math.random() * (Math.pow(10, aantalDigits) + 1)));
+                operator = operators[Math.floor(Math.random() * operators.length)]
+                berekening = String(operand1) + ' ' + operator + ' ' + String(operand2) + ' = ';
+                resultaat += berekening + '<br>';
+            }
+            return resultaat;
+        }
 
-        for(i=1; i <= parseInt(aantalBerekeningen); i++){
-            operand1 = Math.floor((Math.random() * (Math.pow(10, aantalDigits)+1)));
-            operand2 = Math.floor((Math.random() * (Math.pow(10, aantalDigits)+1)));
-            operator = operators[Math.floor(Math.random() * operators.length)]
+        document.getElementById('worksheet').innerHTML = resultaat;
 
-            berekening = String(operand1) + ' ' + operator + ' ' + String(operand2) + ' = ';
-
-            document.getElementById('worksheet').innerHTML += berekening + '<br>';
+        /**testen oefeningen met deling inbegrepen**/
+        function allesMetDeling(){
+            for (i = 1; i <= parseInt(aantalBerekeningen); i++) {
+                operand1 = Math.floor((Math.random() * (Math.pow(10, aantalDigits) + 1)));
+                operand2 = Math.floor((Math.random() * (Math.pow(10, aantalDigits) + 1)));
+                operator = operators[Math.floor(Math.random() * operators.length)]
+                  while((operand1 < operand2 || operand1%operand2 != 0) && (operator == '/')){
+                      operand1 = Math.floor((Math.random() * (Math.pow(10, aantalDigits) + 1)));
+                      operand2 = Math.floor((Math.random() * (Math.pow(10, aantalDigits) + 1)));
+                  }
+                berekening = String(operand1) + ' ' + operator + ' ' + String(operand2) + ' = ';
+                resultaat += berekening + '<br>';
+            }
+            return resultaat;
         }
     }
 </script>
