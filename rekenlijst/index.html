@@ -29,12 +29,13 @@ het typeberekening, aantaldigits en aantalberekeningen op.-->
         <option value="6">6 digits</option>
     </select>
     <p>Aantal oefeningen:</p>
-    <select id="aantalBerekeningen" name="">
+    <input type="number" id="aantalBerekeningen">
+  <!--  <select id="aantalBerekeningen" name="">
         <option value="5">5 oefeningen</option>
         <option value="10">10 oefeningen</option>
         <option value="15">15 oefeningen</option>
         <option value="20">20 oefeningen</option>
-    </select>
+    </select>-->
     <input onclick="generateOefeningen();" type="button" value="Genereer oefeningen">
     <input onclick="window.print();" type="button" value="Print Pagina">
 </div>
@@ -57,7 +58,8 @@ het typeberekening, aantaldigits en aantalberekeningen op.-->
     function generateOefeningen() {
         //ophalen van de aangeklikte values per dropdownlijst
         var typeBerekening = getDropDownListValue("typeBerekening");
-        var aantalBerekeningen = getDropDownListValue("aantalBerekeningen");
+        //var aantalBerekeningen = getDropDownListValue("aantalBerekeningen");
+        var aantalBerekeningen = document.getElementById("aantalBerekeningen").value;
         var aantalDigits = getDropDownListValue("aantalDigits");
 
         var operand1, operand2, operator, operators;
