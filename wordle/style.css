@@ -1,0 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+html, body{
+    height:100%;
+    background:black;
+    color:white;
+    font-family: sans-serif;
+}
+.d-flex{
+    display:flex;
+}
+.align-items-center{
+    align-items: center;
+}
+.justify-content-center{
+    justify-content: center;
+}
+body{
+    display:grid;
+    place-items:center;
+}
+#game{
+    /*display:grid;
+    grid-template-columns:repeat(3,1fr);*/
+}
+.row{
+    display:flex;
+}
+.tile{
+    width:100px;
+    height: 100px;
+    display:flex;
+    outline:1px solid currentColor;
+    font-size:2rem;
+}

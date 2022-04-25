@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<!--<div id="game" x-data="game" @keyup.window="">
+  <span>guesses:<input type="text" x-model="guessesAllowed"></span>
+    <span>word:<input type="text" x-model="wordLength"></span>
+    <template x-for="row in Array.from({length:guessesAllowed})">
+        <div class="row">
+            <template x-for="tile in Array.from({length:wordLength})">
+                <div class="tile justify-content-center d-flex align-items-center"></div>
+            </template>
+        </div>
+    </template>
+</div>-->
+<div id="game" x-data="game" @keyup.window="onKeyPress($event.key)">
+    <template x-for="row in board">
+        <div class="row">
+            <template x-for="tile in row">
+                <div x-text="tile" class="tile justify-content-center d-flex align-items-center"></div>
+            </template>
+        </div>
+    </template>
+</div>
+</body>
+</html>
