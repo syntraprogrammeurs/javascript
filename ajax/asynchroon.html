@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asynchronous</title>
+</head>
+<body>
+<button>click</button>
+<script>
+/*    const button = document.querySelector('button')
+    button.addEventListener('click', ()=>{
+        let count = 0
+        for(let i=0; i < 5000000000000000000000000000000000000000; i++){
+            count++
+        }
+        console.log(count)
+        const text = document.createElement('h1')
+        text.innerHTML = 'Sequentieel laden'
+        document.body.appendChild(text)
+        })*/
+        function showImage(url,type,callback){
+            const xhr =new XMLHttpRequest()
+            xhr.open('GET', url)
+            xhr.responseType = type
+            xhr.onload=function(){
+                callback(xhr.response)
+            }
+            xhr.send
+        }
+        function createImage(blob){
+            const objectUrl = URL.createObjectURL(blob)
+            const imageElement = document.createElement('img')
+            imageElement.src = objectUrl
+            document.body.appendChild(imageElement)
+        }
+        showImage('myImage.jpg', 'blob', createImage)
+</script>
+
+</body>
+</html>

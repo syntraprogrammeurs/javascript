@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /** await in een promise zorgt ervoor dat we asynchrone functies toch synchroon kunnnen uitvoeren*/
+    async function getData(){
+        const response = await fetch('https://restcountries.com/v2/all')
+        const data = response.json()
+        return data
+    }
+    getData()
+        .then(data => console.log(data[0].name))
+        .catch(err => console.log('errors:' + err.message))
+
+</script>
+</body>
+</html>
